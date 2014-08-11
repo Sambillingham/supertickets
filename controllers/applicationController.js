@@ -1,4 +1,4 @@
-var Item = require("../models/item"),
+var Ticket = require("../models/ticket"),
     passport = require('passport');
 
 
@@ -12,37 +12,59 @@ var applicationController = {
         });
     },
 
-    add: function (req, res) {
+    addTicket: function(req, res) {
 
-        var newItem = new Item({
-            name: req.body.name,
-            desc: req.body.desc,
-            value: req.body.value
+        var ticketDetails = [{
+                description: req.body.details,
+                admin: false
+            }];
+
+        var newTicket = new Ticket({
+            id: 'ABCDEF' + Math.floor(Math.random(10, 1000)*100), //temp for random alphanumeric unique id
+            title: req.body.title,
+            details: ticketDetails,
+            status: 'pending'
         });
 
-        newItem.save(function (err, newItem) {
+        newTicket.save(function (err, newTicket) {
             if (err) throw error;
 
-            req.flash('success', 'You added an item to the database');
+            req.flash('success', 'You added a ticket to the database');
             res.render("index", {
                 title: "Home",
                 user : req.user,
                 messages: req.flash('success')
-
             });
         });
     },
 
-    list: function (req, res) {
+    viewTicket: function(req, res){
 
-        Item.find(function (err, allItems) {
+        var ticketID = req.params.id;
+
+        Ticket.findOne({id : ticketID }, function (err, ticket) {
+
             if (err) throw error;
 
-            console.log(allItems);
+            console.log(ticket);
+            res.render("ticket", {
+                title: ticket.title,
+                ticket: ticket
+            });
+        });
+
+    },
+
+    list: function (req, res) {
+
+        Ticket.find(function (err, allTickets) {
+            if (err) throw error;
+
+            console.log(allTickets);
 
             res.render("Items", {
-                title: "Items",
-                items: allItems
+                title: "Tickets",
+                items: allTickets
             });
         });
     }

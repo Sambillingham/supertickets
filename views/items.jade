@@ -4,18 +4,19 @@ block content
     .container
         .row
             .col-sm-12
-                h1 Lists on lists
-                p This is where we see whats in our database
+                h1 Lists all Tickets
 
                 table.table.table-striped.table-bordered
                     thead
                         tr
-                            th Name
-                            th Description
-                            th Value
+                            th Title
+                            th Details
+                            th Status
+                            th Action
                     tbody
                         each item in items
                             tr
-                                td= item.name
-                                td= item.desc
-                                td= item.value
+                                td= item.title
+                                td= item.details[0].description
+                                td= item.status
+                                td: a.btn.btn-success(href="/ticket/#{item.id}") View

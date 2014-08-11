@@ -8,9 +8,11 @@ var routes = {
 
         app.get('/', applicationController.index);
 
-        app.post('/', applicationController.add);
-        
+        app.post('/', applicationController.addTicket);
+
         app.get('/items', authController.isLoggedIn, applicationController.list);
+
+        app.get('/ticket/:id?', applicationController.viewTicket);
 
         app.get('/register', authController.get.register);
 

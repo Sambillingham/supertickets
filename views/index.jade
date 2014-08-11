@@ -11,19 +11,16 @@ block content
                         .alert.alert-success.alert-dismissable= messages
                             button(type="button" class="close" data-dismiss="alert" aria-hidden="true") &times;
 
-                    h2 Add Items here
+                    h2 Add Ticket
 
                     form(action="/" method="post")
 
                         .form-group
-                            input(type="text", placeholder="item name" name="name" class="form-control")
+                            input(type="text", placeholder="item title" name="title" class="form-control")
                         .form-group
-                            input(type="text", placeholder="item description" name="desc" class="form-control")
-                        .form-group
-                            input(type="text", placeholder="value" name="value" class="form-control")
+                            textarea(rows="5" placeholder="item details" name="details" class="form-control")
                         .form-group
                             input(type="submit", value="submit" class=" btn btn-primary")
 
-            .col-sm-6
-                h1 Dashboard
+
 

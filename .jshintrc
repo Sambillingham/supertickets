@@ -1,0 +1,22 @@
+{
+    "boss": true,
+    "curly": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "expr": true,
+    "immed": true,
+    "noarg": true,
+    "onevar": true,
+    "quotmark": "single",
+    "smarttabs": true,
+    "trailing": true,
+    "undef": true,
+    "noarg": false,
+    "node": true,
+    "globals": {
+        "window": false,
+        "document": false,
+        "require": false,
+        "define": false
+    }
+}
