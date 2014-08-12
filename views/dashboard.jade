@@ -10,13 +10,13 @@ block content
                     thead
                         tr
                             th Title
-                            th Details
+                            th Date
                             th Status
                             th Action
                     tbody
                         each ticket in tickets
                             tr
                                 td= ticket.title
-                                td= ticket.details[0].description
+                                td= ticket.date
                                 td= ticket.status
                                 td: a.btn.btn-success(href="/ticket/#{ticket.id}") View

@@ -6,10 +6,11 @@ block content
             .col-sm-8
                 h1 Ticket #{ticket.title}
 
-                .status= ticket.status
-
                 each detail in ticket.details
                     .ticket-details(class=(detail.admin === true ? 'admin' : ''))= detail.description
+
+            .col-sm-4
+                .status(class='#{ticket.status}')= ticket.status
 
         .row
             .col-sm-6

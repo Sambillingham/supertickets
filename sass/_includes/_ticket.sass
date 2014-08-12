@@ -6,3 +6,25 @@
 
     &.admin
         border: solid 2px #cc3333
+
+.status
+    width: 100%
+    height: 40px
+    border-radius: 4px
+    text-align: center
+    +font-size(18)
+
+    &.pending
+        background: #FDE197
+        border: solid 2px darken(#FDE197, 10%)
+        color: darken(#FDE197, 50%)
+
+    &.open
+        background: #2FD550
+        border: solid 2px darken(#2FD550, 10%)
+        color: darken(#2FD550, 50%)
+
+    &.active
+        background: #CA1432
+        border: solid 2px darken(#CA1432, 10%)
+        color: darken(#CA1432, 50%)

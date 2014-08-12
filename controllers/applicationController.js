@@ -1,5 +1,7 @@
 var Ticket = require("../models/ticket"),
-    passport = require('passport');
+    passport = require('passport'),
+    util = require('../modules/util'),
+    mailer = require('../modules/mailer');
 
 
 var applicationController = {
@@ -17,18 +19,10 @@ var applicationController = {
         var ticketDetails = [
             {   description: req.body.details,
                 admin: false
-            },
-            {
-                description: '2nd item',
-                admin: false
-            }
-            ];
-
-            ticketDetails.push({description: 'three', admin: false});
-
+            }];
 
         var newTicket = new Ticket({
-            id: 'ABCDEF' + Math.floor(Math.random(10, 1000)*100), //temp for random alphanumeric unique id
+            id: util.randomString(64),
             title: req.body.title,
             details: ticketDetails,
             status: 'pending'
@@ -36,6 +30,13 @@ var applicationController = {
 
         newTicket.save(function (err, newTicket) {
             if (err) throw error;
+
+            mailer.transporter.sendMail({
+                from: 'lolcat@gmail.com',
+                to: 'lolcat@gmail.com',
+                subject: 'hello',
+                text: 'hello world!'
+            });
 
             req.flash('success', 'You added a ticket to the database');
             res.render("index", {
