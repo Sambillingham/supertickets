@@ -8,15 +8,12 @@
     "noarg": true,
     "onevar": true,
     "quotmark": "single",
+    "jquery": true,
     "smarttabs": true,
-    "trailing": true,
+    "trailing": false,
     "undef": true,
     "noarg": false,
+    "strict": true,
     "node": true,
-    "globals": {
-        "window": false,
-        "document": false,
-        "require": false,
-        "define": false
-    }
+    "predef" : ["Modernizr", "io"]
 }

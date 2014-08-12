@@ -14,10 +14,18 @@ var applicationController = {
 
     addTicket: function(req, res) {
 
-        var ticketDetails = [{
-                description: req.body.details,
+        var ticketDetails = [
+            {   description: req.body.details,
                 admin: false
-            }];
+            },
+            {
+                description: '2nd item',
+                admin: false
+            }
+            ];
+
+            ticketDetails.push({description: 'three', admin: false});
+
 
         var newTicket = new Ticket({
             id: 'ABCDEF' + Math.floor(Math.random(10, 1000)*100), //temp for random alphanumeric unique id
@@ -55,6 +63,40 @@ var applicationController = {
 
     },
 
+    updateTicket: function(req, res){
+
+        var isAdmin = false;
+
+        if (req.isAuthenticated()){
+            isAdmin = true;
+        }
+
+        var ticketID = req.params.id;
+
+        var extraDetails = {
+                description: req.body.details,
+                admin: isAdmin
+            };
+
+        Ticket.findOne({id : ticketID }, function (err, ticket) {
+
+            if (err) throw error;
+
+            var currentDetails = ticket.details;
+
+            currentDetails = currentDetails.push(extraDetails);
+
+            ticket.save(function (err, ticket) {
+
+                res.render("ticket", {
+                    title: ticket.title,
+                    ticket: ticket
+                });
+
+            });
+        });
+    },
+
     list: function (req, res) {
 
         Ticket.find(function (err, allTickets) {
@@ -62,9 +104,9 @@ var applicationController = {
 
             console.log(allTickets);
 
-            res.render("Items", {
-                title: "Tickets",
-                items: allTickets
+            res.render("dashboard", {
+                title: "Dashboard",
+                tickets: allTickets
             });
         });
     }

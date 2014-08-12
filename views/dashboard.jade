@@ -14,9 +14,9 @@ block content
                             th Status
                             th Action
                     tbody
-                        each item in items
+                        each ticket in tickets
                             tr
-                                td= item.title
-                                td= item.details[0].description
-                                td= item.status
-                                td: a.btn.btn-success(href="/ticket/#{item.id}") View
+                                td= ticket.title
+                                td= ticket.details[0].description
+                                td= ticket.status
+                                td: a.btn.btn-success(href="/ticket/#{ticket.id}") View

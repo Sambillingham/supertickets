@@ -14,6 +14,8 @@ var routes = {
 
         app.get('/ticket/:id?', applicationController.viewTicket);
 
+        app.post('/ticket/:id?', applicationController.updateTicket);
+
         app.get('/register', authController.get.register);
 
         app.post('/register', authController.post.register);
