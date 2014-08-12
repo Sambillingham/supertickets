@@ -1,5 +1,7 @@
 var Ticket = require("../models/ticket"),
+    config = require("../config"),
     passport = require('passport'),
+    htmlToText = require('nodemailer-html-to-text').htmlToText;
     util = require('../modules/util'),
     mailer = require('../modules/mailer');
 
@@ -7,6 +9,7 @@ var Ticket = require("../models/ticket"),
 var applicationController = {
 
     index: function (req, res) {
+
         res.render('index', {
             title: 'Home',
             user : req.user,
@@ -25,17 +28,21 @@ var applicationController = {
             id: util.randomString(64),
             title: req.body.title,
             details: ticketDetails,
+            userEmail: req.body.email,
             status: 'pending'
         });
 
         newTicket.save(function (err, newTicket) {
             if (err) throw error;
 
+            console.log('EMAIL: %s', newTicket.userEmail);
+
+            mailer.transporter.use('compile', htmlToText());
             mailer.transporter.sendMail({
-                from: 'lolcat@gmail.com',
-                to: 'lolcat@gmail.com',
-                subject: 'hello',
-                text: 'hello world!'
+                from: config.email.from,
+                to: newTicket.userEmail,
+                subject: 'Your ticket on ' + config.name,
+                html: '<h2>Supertickets</h2><p>You new ticket can be viewed at http://localhost:3000/ticket/'+ newTicket.id + '</p>'
             });
 
             req.flash('success', 'You added a ticket to the database');
@@ -98,7 +105,7 @@ var applicationController = {
         });
     },
 
-    list: function (req, res) {
+    dashboard: function (req, res) {
 
         Ticket.find(function (err, allTickets) {
             if (err) throw error;

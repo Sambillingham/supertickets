@@ -10,7 +10,7 @@ var routes = {
 
         app.post('/', applicationController.addTicket);
 
-        app.get('/items', authController.isLoggedIn, applicationController.list);
+        app.get('/dashboard', authController.isLoggedIn, applicationController.dashboard);
 
         app.get('/ticket/:id?', applicationController.viewTicket);
 

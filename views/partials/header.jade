@@ -11,10 +11,10 @@ nav.navbar.navbar-default
     #main-nav.collapse.navbar-collapse.navbar-inverse
         ul.nav.navbar-nav.pull-right
             li(class=(title === 'Home' ? 'active' : ''))
-                a(href="/") Home 
+                a(href="/") Home
 
             li(class=(title === 'Items' ? 'active' : ''))
-                a(href="/items") Items
+                a(href="/Dashboard") Dashboard
             if (!user)
                 li(class=(title === 'Login' ? 'active' : ''))
                     a(href="/login") Login

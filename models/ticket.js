@@ -5,6 +5,7 @@ var ticketSchema = new Schema({
     id: String,
     title: String,
     details: Array,
+    userEmail: String,
     status: String,
     date: {
         type: Date,
