@@ -3,7 +3,8 @@ var Ticket = require("../models/ticket"),
     passport = require('passport'),
     htmlToText = require('nodemailer-html-to-text').htmlToText;
     util = require('../modules/util'),
-    mailer = require('../modules/mailer');
+    mailer = require('../modules/mailer'),
+    marked = require('marked');
 
 
 var applicationController = {
@@ -20,7 +21,7 @@ var applicationController = {
     addTicket: function(req, res) {
 
         var ticketDetails = [
-            {   description: req.body.details,
+            {   description: marked(req.body.details),
                 admin: false
             }];
 
@@ -83,7 +84,7 @@ var applicationController = {
         }
 
         var extraDetails = {
-                description: req.body.details,
+                description: marked(req.body.details),
                 admin: isAdmin,
             };
 
@@ -96,14 +97,25 @@ var applicationController = {
 
             ticket.save(function (err, ticket) {
 
-                console.log(ticket);
-
                 res.render("ticket", {
                     title: ticket.title,
                     ticket: ticket
                 });
 
             });
+        });
+    },
+
+    closeTicket: function (req, res) {
+
+        var query = {id : req.params.id },
+            updateValue = { status: 'closed' }
+
+        Ticket.update( query, updateValue, function (err, updated) {
+
+            if (err) throw error;
+
+            res.redirect('/ticket/' + req.params.id);
         });
     },
 

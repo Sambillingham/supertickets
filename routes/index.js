@@ -18,6 +18,8 @@ var routes = {
 
         app.post('/ticket/:id?', applicationController.updateTicket);
 
+        app.post('/ticket/close/:id?', applicationController.closeTicket);
+
         app.get('/register', authController.get.register);
 
         app.post('/register', authController.post.register);
