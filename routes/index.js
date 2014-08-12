@@ -12,6 +12,8 @@ var routes = {
 
         app.get('/dashboard', authController.isLoggedIn, applicationController.dashboard);
 
+        app.get('/remove', authController.isLoggedIn, applicationController.remove);
+
         app.get('/ticket/:id?', applicationController.viewTicket);
 
         app.post('/ticket/:id?', applicationController.updateTicket);

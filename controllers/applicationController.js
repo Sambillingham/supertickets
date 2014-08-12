@@ -117,6 +117,12 @@ var applicationController = {
                 tickets: allTickets
             });
         });
+    },
+
+    remove: function (req, res){
+
+        Ticket.find().remove().exec();
+
     }
 };
 
