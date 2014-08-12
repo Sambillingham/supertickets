@@ -20,8 +20,7 @@ gulp.task('sass', function() {
         .pipe(sass({ style: 'compressed', lineNumbers : true }))
         .pipe(plumber.stop())
         .pipe(rename('main.min.css'))
-        .pipe(gulp.dest('public/css'))
-        .pipe(notify({ message: 'Styles task complete' }));
+        .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('scripts', function() {

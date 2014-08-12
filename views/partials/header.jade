@@ -21,6 +21,8 @@ nav.navbar.navbar-default
                 li(class=(title === 'Register' ? 'active' : ''))
                     a(href="/register") Register
             if (user)
-                li: a(class="") USER: #{user.username}
-                li: a(href="/logout") Logout
-
+                li
+                    a(class="dropdown-toggle" data-toggle="dropdown" href="#")= user.username
+                        .caret
+                    ul(class="dropdown-menu" role="menu")
+                        li: a(href="/logout") Logout

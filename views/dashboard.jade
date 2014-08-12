@@ -4,7 +4,9 @@ block content
     .container
         .row
             .col-sm-12
-                h1 Lists all Tickets
+                if messages.length > 0
+                    .alert.alert-success.alert-dismissable= messages
+                        button(type="button" class="close" data-dismiss="alert" aria-hidden="true") &times;
 
                 table.table.table-striped.table-bordered
                     thead

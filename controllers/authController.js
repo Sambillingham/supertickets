@@ -48,7 +48,7 @@ var authController = {
 
     isLoggedIn: function (req, res, next) {
 
-        // if user is authenticated in the session, carry on 
+        // if user is authenticated in the session, carry on
         if (req.isAuthenticated())
             return next();
 
@@ -56,7 +56,7 @@ var authController = {
         req.flash('error', 'You need to be logged in to view this page');
         res.redirect('/login');
     }
-    
+
 };
 
 module.exports = authController;

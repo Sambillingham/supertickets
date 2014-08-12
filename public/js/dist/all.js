@@ -23,7 +23,7 @@ $(function () {
 
             this.initializers();
             this.bindUiActions();
-            console.log("test");
+            console.log('test');
         },
 
         initializers : function(){

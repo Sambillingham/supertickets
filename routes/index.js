@@ -25,7 +25,7 @@ var routes = {
         app.get('/login', authController.get.login);
 
         app.post('/login', passport.authenticate('local', {
-                                    successRedirect: '/',
+                                    successRedirect: '/dashboard',
                                     failureRedirect: '/login',
                                     failureFlash: 'oops, looks like like an incorrect email or password',
                                     successFlash: 'Welcome onboard!' }) );

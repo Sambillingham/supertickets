@@ -73,28 +73,30 @@ var applicationController = {
 
     updateTicket: function(req, res){
 
-        var isAdmin = false;
+        var isAdmin = false,
+            status = 'open-admin',
+            ticketID = req.params.id;
 
         if (req.isAuthenticated()){
             isAdmin = true;
+            status = 'open-user';
         }
-
-        var ticketID = req.params.id;
 
         var extraDetails = {
                 description: req.body.details,
-                admin: isAdmin
+                admin: isAdmin,
             };
 
         Ticket.findOne({id : ticketID }, function (err, ticket) {
 
             if (err) throw error;
 
-            var currentDetails = ticket.details;
-
-            currentDetails = currentDetails.push(extraDetails);
+            ticket.details.push(extraDetails);
+            ticket.status = status;
 
             ticket.save(function (err, ticket) {
+
+                console.log(ticket);
 
                 res.render("ticket", {
                     title: ticket.title,
@@ -114,7 +116,8 @@ var applicationController = {
 
             res.render("dashboard", {
                 title: "Dashboard",
-                tickets: allTickets
+                tickets: allTickets,
+                messages: req.flash('success')
             });
         });
     },

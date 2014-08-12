@@ -4,6 +4,8 @@ block content
 
     .container
         .row
+            .col-sm-12.col-md-8.col-md-offset-2
+                h1 Supertickets
 
             .col-sm-12
                 .well
@@ -18,11 +20,14 @@ block content
                         .form-group
                             input(type="text", placeholder="ticket" name="title" class="form-control")
                         .form-group
-                            input(type="text", placeholder="Your email" name="email" class="form-control")
-                        .form-group
                             textarea(rows="5" placeholder="ticket Description" name="details" class="form-control")
-                        .form-group
-                            input(type="submit", value="submit" class=" btn btn-primary")
+                        .row
+                            .col-xs-12.col-sm-6
+                                .form-group
+                                    input(type="email", placeholder="Your email" name="email" class="form-control")
+                            .col-xs-12.col-sm-6
+                                .form-group
+                                    input(type="submit", value="submit" class=" btn btn-primary form-control")
 
             .col-sm-12
                 .well
