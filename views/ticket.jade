@@ -23,6 +23,20 @@ block content
                         .form-group
                             input(type="submit", value="Update" class=" btn btn-primary")
 
+                    button(class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-sm") Close your ticket
+
+    .modal.fade.bs-example-modal-sm(tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true")
+        .modal-dialog.modal-sm
+            .modal-content
+                .modal-header
+                    button(type="button" class="close" data-dismiss="modal")
+                        span(aria-hidden="true") &times;
+                        .sr-only Close
+
+                    h4(class="modal-title" id="myModalLabel") Confirm closing of ticket
+
+                .modal-body
+                    | You are about to close your ticket, you should only do this if you are sure your issue has been solved.
                     form(action="/ticket/close/#{ticket.id}" method="post")
                         .form-group
-                            input(type="submit", value="Close" class=" btn btn-danger")
+                            input(type="submit", value="Yes close my ticket, It's complete" class=" btn btn-danger")
